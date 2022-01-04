@@ -22,5 +22,5 @@ db.on("error", () => {
 });
 
 module.exports = {
-    Market: require("./markets"),
+    Market: require("./market"),
 };
