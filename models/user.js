@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const categorySchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     login: String,
     name: String,
     password: String
 });
 
-const User = mongoose.model("User", categorySchema);
+const User = mongoose.model("User", userSchema);
 
 
 

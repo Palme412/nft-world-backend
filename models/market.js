@@ -4,7 +4,7 @@ const marketSchema = new mongoose.Schema({
     name: String,
     blockchain: String,
     collections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Collection' }],
-    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
+    // categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
 });
 
 const Market = mongoose.model("Market", marketSchema);
