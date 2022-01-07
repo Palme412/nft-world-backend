@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require('axios');
 
 const { Collection } = require('../models');
+const { collection } = require('../models/user');
 
 router.get('/test', (req, res) => {
     res.json({
@@ -16,9 +17,10 @@ router.get('/', async (req, response) => {
     try {
         // Hit API
         let res = await axios.get(`https://api.opensea.io/api/v1/collection/doodles-official`);
-
+        let collectionArray = [];
+        collectionArray.push(response.data.collection);
         response.json({
-            message: res.data.collection
+            collection: collectionArray
         })
         //response.json({ topTenCasesArr, topTenDeathsArr, topTenNewCasesArr })
     }
