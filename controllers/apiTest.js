@@ -18,7 +18,7 @@ router.get('/', async (req, response) => {
         // Hit API
         let res = await axios.get(`https://api.opensea.io/api/v1/collection/doodles-official`);
         let collectionArray = [];
-        collectionArray.push(response.data.collection);
+        collectionArray.push(res.data.collection);
         response.json({
             collectionArray
         })
