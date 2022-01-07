@@ -20,7 +20,7 @@ router.get('/', async (req, response) => {
         let collectionArray = [];
         collectionArray.push(response.data.collection);
         response.json({
-            collection: collectionArray
+            collectionArray
         })
         //response.json({ topTenCasesArr, topTenDeathsArr, topTenNewCasesArr })
     }
