@@ -24,6 +24,8 @@ app.use(passport.initialize());
 // controllers
 const users = require('./controllers/users');
 const tester = require('./controllers/apiTest');
+const collections = require('./controllers/collections');
+
 
 // home route
 app.get('/', (req, res) => {
@@ -34,6 +36,8 @@ app.get('/', (req, res) => {
 
 app.use('/users', users);
 app.use('/api', tester);
+app.use('/collections', collections);
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on PORT`, PORT);
