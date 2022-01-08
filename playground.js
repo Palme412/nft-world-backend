@@ -1,7 +1,7 @@
 const { Collection } = require("./models");
 
 
-Collection.insertMany({
+Collection.insertOne({
     name: "Doodles",
     floor_price: 9.3,
     supply: 9999,
