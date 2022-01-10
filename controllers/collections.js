@@ -9,7 +9,7 @@ router.get('/test', (req, res) => {
     //     message: 'Testing api test controller',
     // });
     db.find().then(collections => {
-        res.json(collections)
+        res.json({ collections })
     }).catch(err => res.status(500).json({ error: err }))
 });
 
