@@ -3,8 +3,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-const { Collection } = require('../models');
-const { collection } = require('../models/user');
+const { Collection, mockCollection } = require('../models');
 
 router.get('/test', (req, res) => {
     res.json({
@@ -12,22 +11,40 @@ router.get('/test', (req, res) => {
     });
 });
 
-// Fetch API for NFT collection (doodle-official) 
+// Store NFT Collection into database
 router.get('/', async (req, response) => {
     try {
         // Hit API
         let res = await axios.get(`https://api.opensea.io/api/v1/collection/doodles-official`);
-        let collectionArray = [];
-        collectionArray.push(res.data.collection);
-        response.json({
-            collectionArray
+
+        let newCollection = await mockCollection.insertOne({
+            name: res.data.collection.name,
+            floor_price: res.data.collection.floor_price,
+            seven_day_sales: res.data.collection.seven_day_sales,
+            thirty_day_sales: res.data.collection.thirty_day_sales,
+            slug: res.data.collection.slug,
+            description: res.data.collection.description,
         })
-        //response.json({ topTenCasesArr, topTenDeathsArr, topTenNewCasesArr })
+        newCollection.save();
+        console.log("New Collection: ", newCollection);
+        response.json({ newCollection });
     }
     catch (error) {
-        console.log(error);
+        console.log('ERROR:', error);
     }
 });
+
+// // Send NFT Collection to frontend 
+// router.get('/collection', async (req, response) => {
+//     try {
+//         console.log("GET COLLECTION FROM DATABASE");
+
+
+//     }
+//     catch (error) {
+//         console.log('ERROR: ', error);
+//     }
+// });
 
 router.get('/batchrequest', async (req, res) => {
     try {
@@ -61,6 +78,9 @@ router.get('/batchrequest', async (req, res) => {
             offset += 300;
         }
     }
-})
+    catch (error) {
+        console.log(error);
+    }
+});
 
 module.exports = router;
