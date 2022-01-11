@@ -22,13 +22,13 @@ app.use(express.json());
 app.use(cors());
 app.use(passport.initialize());
 
-// controllers
+
 const users = require('./controllers/users');
 const tester = require('./controllers/apiTest');
 const collections = require('./controllers/collections');
 
 
-// home route
+
 app.get('/', (req, res) => {
     res.json({
         message: "Welcome to the backend"

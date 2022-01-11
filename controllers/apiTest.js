@@ -11,10 +11,8 @@ router.get('/test', (req, res) => {
     });
 });
 
-// Store NFT Collection into database
 router.get('/', async (req, response) => {
     try {
-        // Hit API
         let res = await axios.get(`https://api.opensea.io/api/v1/collection/doodles-official`);
 
         let newCollection = await mockCollection.insertOne({
@@ -26,7 +24,6 @@ router.get('/', async (req, response) => {
             description: res.data.collection.description,
         })
         newCollection.save();
-        console.log("New Collection: ", newCollection);
         response.json({ newCollection });
     }
     catch (error) {
@@ -34,41 +31,25 @@ router.get('/', async (req, response) => {
     }
 });
 
-// // Send NFT Collection to frontend 
-// router.get('/collection', async (req, response) => {
-//     try {
-//         console.log("GET COLLECTION FROM DATABASE");
 
-
-//     }
-//     catch (error) {
-//         console.log('ERROR: ', error);
-//     }
-// });
 
 router.get('/batchrequest', async (req, res) => {
     try {
         let offset = 0;
         let maxLimit = 300;
-        let firstCollection;    // first Collection retrieved from Batch Request 
-        let lastRetrieved;      // date of last Batch Request 
+        let firstCollection;
+        let lastRetrieved;
 
-        // Batch Request 
         while (true) {
             let collectionsArray = [];
 
-            // Hit API to retrieve collections with limit 300 and offset
             let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=0&limit=300`);
 
-            // Push response.data.collections into collectionsArray
             collectionsArray.push(response.data.collections);
             lastRetrieved = Date.now();
 
-            // Store first collection retrieved
-            // ******* HOW DO YOU STORE THIS WITHOUT UPDATING AFTER FIRST LOOP???
             firstCollection = collectionsArray[0].name;
 
-            // Insert collectionsArray into database
             db.Collection.in
 
             if (collectionsArray.length < (maxLimit - 1)) {
