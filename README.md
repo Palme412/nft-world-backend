@@ -1,6 +1,6 @@
 # nft-world-backend
 
-This is the backend respository for NFT World. This holds the code necessary for data of the app. It was designed to work with the frontend respository. 
+This is the backend respository for NFT World. This holds the code necessary for data of the app. It was designed to work with the [frontend respository](https://github.com/kawaharm/nft-world-frontend). 
 
 # About
 NFT World is an app for users to see NFT collections ranked by 7 day sales and assets for each collection. 
