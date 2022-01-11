@@ -15,6 +15,14 @@ router.get('/test', (req, res) => {
 
 });
 
+router.post('/assets', (req, res) => {
+    console.log("Request", req);
+    if (req => {
+        console.log("This works")
+    }); else {
+        console.log('There was an error');
+    }
+});
 
 
 module.exports = router;
