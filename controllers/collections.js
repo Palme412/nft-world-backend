@@ -8,6 +8,9 @@ router.get('/test', (req, res) => {
     // res.json({
     //     message: 'Testing api test controller',
     // });
+    db.aggregate(
+        { $sort: { seven_day_sales: -1 } }
+    );
     db.find().then(collections => {
         res.json({ collections })
     }).catch(err => res.status(500).json({ error: err }))
