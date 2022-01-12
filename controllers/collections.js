@@ -5,15 +5,11 @@ const axios = require('axios');
 const db = require('../models/collection');
 
 
-router.get('/test', (req, res) => {
-    // res.json({
-    //     message: 'Testing api test controller',
-    // });
+router.get('/', (req, res) => {
     db.find().sort({ seven_day_sales: -1 })
         .then(collections => {
             res.json({ collections })
         }).catch(err => res.status(500).json({ error: err }))
-
 });
 
 // Return assets from NFT collection clicked by user
