@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/users', users);
-app.use('/api', tester);
+// app.use('/api', tester);
 app.use('/collections', collections);
 
 
