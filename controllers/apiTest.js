@@ -33,53 +33,53 @@ router.get('/', async (req, response) => {
 
 
 
-router.get('/batchrequest', async (req, res) => {
-    try {
-        let offset = 0;
-        let maxLimit = 300;
-        let firstCollection;
-        let lastRetrieved;
+// router.get('/batchrequest', async (req, res) => {
+//     try {
+//         let offset = 0;
+//         let maxLimit = 300;
+//         let firstCollection;
+//         let lastRetrieved;
 
-        while (true) {
-            let collectionsArray;
-
-
-            // Hit API to retrieve collections with limit 300 and offset
-            let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=${offset}&limit=300`);
-
-            // Push response.data.collections into collectionsArray
-            collectionsArray = apiRes.data.collections;
-            lastRetrieved = Date.now();
-
-            // Store first collection retrieved
-            // ******* HOW DO YOU STORE THIS WITHOUT UPDATING AFTER FIRST LOOP???
-            if (offset === 0) {
-                firstCollection = collectionsArray[0].name;
-            }
-
-            // Insert collectionsArray into database
-            mockCollection.insert
-
-            let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=0&limit=300`);
-
-            collectionsArray.push(response.data.collections);
-            lastRetrieved = Date.now();
-
-            firstCollection = collectionsArray[0].name;
-
-            db.Collection.in
+//         while (true) {
+//             let collectionsArray;
 
 
-            if (collectionsArray.length < maxLimit) {
-                break;
-            }
+//             // Hit API to retrieve collections with limit 300 and offset
+//             let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=${offset}&limit=300`);
 
-            offset += 300;
-        }
-    }
-    catch (error) {
-        console.log(error);
-    }
-});
+//             // Push response.data.collections into collectionsArray
+//             collectionsArray = apiRes.data.collections;
+//             lastRetrieved = Date.now();
+
+//             // Store first collection retrieved
+//             // ******* HOW DO YOU STORE THIS WITHOUT UPDATING AFTER FIRST LOOP???
+//             if (offset === 0) {
+//                 firstCollection = collectionsArray[0].name;
+//             }
+
+//             // Insert collectionsArray into database
+//             mockCollection.insert
+
+//             let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=0&limit=300`);
+
+//             collectionsArray.push(response.data.collections);
+//             lastRetrieved = Date.now();
+
+//             firstCollection = collectionsArray[0].name;
+
+//             db.Collection.in
+
+
+//             if (collectionsArray.length < maxLimit) {
+//                 break;
+//             }
+
+//             offset += 300;
+//         }
+//     }
+//     catch (error) {
+//         console.log(error);
+//     }
+// });
 
 module.exports = router;
