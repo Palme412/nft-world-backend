@@ -11,10 +11,8 @@ router.get('/test', (req, res) => {
     });
 });
 
-// Store NFT Collection into database
 router.get('/', async (req, response) => {
     try {
-        // Hit API
         let res = await axios.get(`https://api.opensea.io/api/v1/collection/doodles-official`);
 
         let newCollection = await mockCollection.insertOne({
@@ -26,7 +24,6 @@ router.get('/', async (req, response) => {
             description: res.data.collection.description,
         })
         newCollection.save();
-        console.log("New Collection: ", newCollection);
         response.json({ newCollection });
     }
     catch (error) {
@@ -34,28 +31,18 @@ router.get('/', async (req, response) => {
     }
 });
 
-// // Send NFT Collection to frontend 
-// router.get('/collection', async (req, response) => {
-//     try {
-//         console.log("GET COLLECTION FROM DATABASE");
 
-
-//     }
-//     catch (error) {
-//         console.log('ERROR: ', error);
-//     }
-// });
 
 router.get('/batchrequest', async (req, res) => {
     try {
         let offset = 0;
         let maxLimit = 300;
-        let firstCollection;    // first Collection retrieved from Batch Request 
-        let lastRetrieved;      // date of last Batch Request 
+        let firstCollection;
+        let lastRetrieved;
 
-        // Batch Request 
         while (true) {
             let collectionsArray;
+
 
             // Hit API to retrieve collections with limit 300 and offset
             let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=${offset}&limit=300`);
@@ -72,6 +59,16 @@ router.get('/batchrequest', async (req, res) => {
 
             // Insert collectionsArray into database
             mockCollection.insert
+
+            let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=0&limit=300`);
+
+            collectionsArray.push(response.data.collections);
+            lastRetrieved = Date.now();
+
+            firstCollection = collectionsArray[0].name;
+
+            db.Collection.in
+
 
             if (collectionsArray.length < maxLimit) {
                 break;
