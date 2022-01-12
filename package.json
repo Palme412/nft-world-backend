@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kawaharm/nft-world-backend"
+    "url": "git+https://github.com/Palme412/nft-world-backend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kawaharm/nft-world-backend/issues"
+    "url": "https://github.com/Palme412/nft-world-backend/issues"
   },
-  "homepage": "https://github.com/kawaharm/nft-world-backend#readme",
+  "homepage": "https://github.com/Palme412/nft-world-backend#readme",
   "dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
