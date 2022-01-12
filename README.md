@@ -24,7 +24,8 @@ If you are new to NFT's and want to know what's selling or do have experience an
 
 # Code Snippet
 ### Display assets
-```router.post('/assets', (req, res) => {
+```
+router.post('/assets', (req, res) => {
     let newSlug = Object.keys(req.body);
     axios.get(`https://api.opensea.io/api/v1/assets?order_by=sale_date&order_direction=desc&offset=0&limit=10&collection=${newSlug}`)
         .then(response => {

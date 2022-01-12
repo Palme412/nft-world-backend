@@ -11,5 +11,8 @@
     "node": "^17.3.0",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
