@@ -5,12 +5,13 @@ const axios = require('axios');
 const db = require('../models/collection');
 
 
-router.get('/test', (req, res) => {
+
+router.get('/', (req, res) => {
+
     db.find().sort({ seven_day_sales: -1 })
         .then(collections => {
             res.json({ collections })
         }).catch(err => res.status(500).json({ error: err }))
-
 });
 
 router.post('/assets', (req, res) => {

@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
-const { Collection, mockCollection } = require('../models');
+const { mockCollection } = require('../models');
 
 router.get('/test', (req, res) => {
     res.json({
@@ -41,7 +41,24 @@ router.get('/batchrequest', async (req, res) => {
         let lastRetrieved;
 
         while (true) {
-            let collectionsArray = [];
+            let collectionsArray;
+
+
+            // Hit API to retrieve collections with limit 300 and offset
+            let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=${offset}&limit=300`);
+
+            // Push response.data.collections into collectionsArray
+            collectionsArray = apiRes.data.collections;
+            lastRetrieved = Date.now();
+
+            // Store first collection retrieved
+            // ******* HOW DO YOU STORE THIS WITHOUT UPDATING AFTER FIRST LOOP???
+            if (offset === 0) {
+                firstCollection = collectionsArray[0].name;
+            }
+
+            // Insert collectionsArray into database
+            mockCollection.insert
 
             let apiRes = await axios.get(`https://api.opensea.io/api/v1/collections?offset=0&limit=300`);
 
@@ -52,7 +69,8 @@ router.get('/batchrequest', async (req, res) => {
 
             db.Collection.in
 
-            if (collectionsArray.length < (maxLimit - 1)) {
+
+            if (collectionsArray.length < maxLimit) {
                 break;
             }
 

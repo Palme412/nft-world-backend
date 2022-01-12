@@ -1,4 +1,22 @@
 {
+  "name": "nft-world-backend",
+  "version": "1.0.0",
+  "description": "This is a code along for MERN Auth",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kawaharm/nft-world-backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kawaharm/nft-world-backend/issues"
+  },
+  "homepage": "https://github.com/kawaharm/nft-world-backend#readme",
   "dependencies": {
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
@@ -12,7 +30,12 @@
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0"
   },
+
+  "engines": {
+    "node": "v16.9.1"
+
   "scripts": {
     "start": "node index.js"
+
   }
 }
