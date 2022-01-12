@@ -15,7 +15,6 @@ router.get('/test', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    console.log(req.body);
 
     User.findOne({ email: req.body.email })
         .then(user => {
@@ -48,13 +47,11 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    console.log(req.body);
 
     const foundUser = await User.findOne({ email: req.body.email });
 
     if (foundUser) {
         let isMatch = await bcrypt.compare(req.body.password, foundUser.password);
-        console.log('Match User', isMatch);
         if (isMatch) {
             foundUser.timesLoggedIn += 1;
             foundUser.save();
@@ -82,7 +79,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res) => {
-    console.log('====> user', req.user);
     const { id, name, email } = req.user;
     res.json({ id, name, email });
 });
