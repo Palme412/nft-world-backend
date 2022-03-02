@@ -29,5 +29,8 @@
     "node": "^17.3.0",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
